@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usinel Indústria e Comércio de Máquinas e Equipamentos LTDA - Engenharia e Metalurgia Industrial de Alta Performance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0A0F1D;
+            --bg-card: rgba(16, 22, 42, 0.65);
+            --primary: #3B82F6; /* Azul Moderno Vercel */
+            --primary-glow: rgba(59, 130, 246, 0.15);
+            --accent: #10B981; /* Verde esmeralda para conversões e CTAs */
+            --text-main: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --border: rgba(255, 255, 255, 0.08);
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .brand {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        /* Background grid overlay */
+        .bg-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .bg-gradient-radial {
+            position: fixed;
+            top: -20%; left: -10%; width: 60vw; height: 60vw;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .bg-gradient-radial-2 {
+            position: fixed;
+            bottom: -20%; right: -10%; width: 60vw; height: 60vw;
+            background: radial-gradient(circle, rgba(16, 115, 246, 0.08) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 8%;
+            background: rgba(10, 15, 29, 0.75);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .brand {
+            font-size: 1.4rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .brand span {
+            color: var(--primary);
+            font-weight: 900;
+        }
+
+        /* Hero Section */
+        header.hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 7rem 8% 4rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            color: var(--primary);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #FFFFFF 30%, #9CA3AF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 650px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.1rem 2.2rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 10px 30px var(--primary-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.35);
+            background: #2563EB;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 8%;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #FFFFFF, #E5E7EB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem 2rem;
+            backdrop-filter: blur(8px);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(800px circle at var(--x, 0) var(--y, 0), rgba(255,255,255,0.06), transparent 40%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-icon {
+            width: 50px; height: 50px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: var(--radius-md);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Showcases */
+        .showcases {
+            padding: 6rem 8%;
+            background: rgba(8, 12, 24, 0.4);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .showcase-item {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            height: 350px;
+            transition: var(--transition);
+        }
+
+        .showcase-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .showcase-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .showcase-overlay {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            background: linear-gradient(to top, rgba(10, 15, 29, 0.95) 0%, rgba(10, 15, 29, 0.5) 70%, transparent 100%);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 60%;
+        }
+
+        .showcase-overlay h3 {
+            font-size: 1.25rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .showcase-overlay p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Contact & Map */
+        .location {
+            padding: 6rem 8%;
+            position: relative;
+        }
+
+        .location-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .location-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .location-info p {
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            width: 45px; height: 45px;
+            background: rgba(59, 130, 246, 0.08);
+            border-radius: var(--radius-md);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-text strong {
+            display: block;
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-text span {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .map-wrapper {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            height: 400px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .map-wrapper iframe {
+            width: 100%; height: 100%;
+            border: none;
+            filter: grayscale(100%) invert(90%) contrast(110%);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 8%;
+            border-top: 1px solid var(--border);
+            background: #060912;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive Layouts */
+        @media (max-width: 960px) {
+            .location-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            nav {
+                padding: 1.2rem 5%;
+            }
+            header.hero {
+                padding: 8rem 5% 4rem;
+            }
+            .features, .showcases, .location {
+                padding: 5rem 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+    <div class="bg-gradient-radial"></div>
+    <div class="bg-gradient-radial-2"></div>
+
+    <nav>
+        <div class="brand">Usinel Indústria e Comércio de Máquinas e Equipamentos LTDA <span>Industrial</span></div>
+        <a href="https://wa.me/5511999999999" class="btn btn-secondary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem; border-radius: 8px;">WhatsApp Direto</a>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">⚡ PARCEIRO DE MANUFATURA ELITE</div>
+            <h1>Manufatura, Força &<br><span style="color: var(--primary);">Precisão Industrial.</span></h1>
+            <p>Atendimento de engenharia de alta performance e usinagem técnica de precisão em Mogi Guaçu. Comprometimento absoluto com tolerâncias rigorosas e prazos impecáveis.</p>
+            <div class="btn-group">
+                <a href="https://wa.me/5511999999999" class="btn btn-primary">Falar com Engenharia no WhatsApp</a>
+                <a href="#solucoes" class="btn btn-secondary">Conhecer Nossas Soluções</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="features" id="solucoes">
+        <div class="section-header">
+            <h2>Capacidades Operacionais</h2>
+            <p>Processos industriais certificados e tecnologia de ponta para atender as mais altas exigências técnicas.</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="card">
+                <div class="card-icon">⚙️</div>
+                <h3>Usinagem CNC & Precisão</h3>
+                <p>Tolerâncias milimétricas garantidas através de tornos e centros de usinagem modernos e operadores altamente qualificados.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🏗️</div>
+                <h3>Estruturas Metálicas</h3>
+                <p>Projetos de caldeiraria e montagem de estruturas robustas, projetadas e soldadas sob estritos padrões regulatórios internacionais.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔍</div>
+                <h3>Controle de Qualidade</h3>
+                <p>Garantia de conformidade dimensional e estrutural rigorosa por meio de auditoria e instrumentação calibrada em todas as etapas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcases">
+        <div class="section-header">
+            <h2>Nosso Universo Técnico</h2>
+            <p>Visão real de nosso ambiente industrial produtivo, materiais e acabamento final.</p>
+        </div>
+        <div class="showcase-grid">
+            <div class="showcase-item">
+                <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=600&q=80" alt="Operações de Precisão CNC">
+                <div class="showcase-overlay">
+                    <h3>Usinagem e Corte Técnico</h3>
+                    <p>Produção ágil de componentes complexos com acabamento dimensional de excelência.</p>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?auto=format&fit=crop&w=600&q=80" alt="Estruturas e Caldeiraria">
+                <div class="showcase-overlay">
+                    <h3>Projetos Estruturais</h3>
+                    <p>Solda e caldeiraria de alta resistência para aplicações pesadas e severas.</p>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <img src="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?auto=format&fit=crop&w=600&q=80" alt="Montagem Industrial de Ponta">
+                <div class="showcase-overlay">
+                    <h3>Dispositivos e Máquinas</h3>
+                    <p>Montagem integrada de componentes e sistemas prontos para operação em linha.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="location" id="contato">
+        <div class="location-container">
+            <div class="location-info">
+                <h2>Engenharia de Parceria</h2>
+                <p>Agende uma visita técnica ou envie seus desenhos técnicos diretamente por WhatsApp para nossa equipe de engenharia analisar.</p>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-text">
+                        <strong>Endereço Operacional</strong>
+                        <span>Mogi Guaçu</span>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-text">
+                        <strong>Contato Rápido (Comercial)</strong>
+                        <span>Contato via WhatsApp</span>
+                    </div>
+                </div>
+                
+                <a href="https://wa.me/5511999999999" class="btn btn-primary" style="margin-top: 1.5rem; background: var(--accent); box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);">Enviar Desenho Técnico via WhatsApp</a>
+            </div>
+            <div class="map-wrapper">
+                <iframe 
+                    src="https://maps.google.com/maps?q=Usinel Indústria e Comércio de Máquinas e Equipamentos LTDA%2C%20Mogi Guaçu&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Usinel Indústria e Comércio de Máquinas e Equipamentos LTDA. Todos os direitos reservados.</p>
+        <p style="font-size: 0.75rem; color: var(--text-muted); opacity: 0.6; margin-top: 0.5rem;">Arquitetura Digital e Landing Page de Alta Conversão por XTAL Group</p>
+    </footer>
+
+    <script>
+        // Micro-interatividade de luzes nos cards ao mover o mouse (Efeito Premium)
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+            });
+        });
+    </script>
+
+</body>
+</html>
